@@ -18,12 +18,22 @@ Actúa como un equipo de ingeniería de alto nivel (Software Architect, Senior F
 - Inspiración del CEO: siznex.com/portfolio y icoderzsolutions.com/our-project.shtml (solo patrones de estructura; no copiar contenido, cifras ni clientes).
 
 ## Estado
-Fases 0 a 5 completadas: sistema de diseño, inicio con hero 2D animado, servicios, portafolio con detalle por proyecto, nosotros, contacto (formulario con Zod que abre el correo vía mailto), legales (borradores), animaciones respetando prefers-reduced-motion. No está verificado visualmente en navegador/móvil: revísalo o pídeme capturas.
+Fases 0 a 5 completadas y Fase 6 parcialmente (idiomas es/en con rutas [lang], selector de país, redes en footer, responsive verificado con Chromium). Lee docs/I18N.md. Fases 0 a 5 completadas: sistema de diseño, inicio con hero 2D animado, servicios, portafolio con detalle por proyecto, nosotros, contacto (formulario con Zod que abre el correo vía mailto), legales (borradores), animaciones respetando prefers-reduced-motion. No está verificado visualmente en navegador/móvil: revísalo o pídeme capturas.
+
+## Contacto (rediseñado)
+Página /contacto implementada desde un HTML del CEO (ver PROJECT_STATUS.md, sección Contacto rediseñado). WhatsApp +51 929 259 109. Falta: lista de tecnologías para la tarjeta de stack (el HTML llegó cortado) y confirmar respuesta < 24 h y soporte in situ.
+
+## Fase 6 pendiente
+Envío real del formulario (preguntar al CEO), URLs de redes (Instagram, TikTok, LinkedIn y una cuarta que no llegó a decir), revisar textos en inglés. Para verificar visualmente usa Chromium vía npm (@sparticuz/chromium + puppeteer-core en una carpeta aparte); el servidor next start debe lanzarse dentro del mismo comando que las pruebas.
+
+## Pendiente inmediato
+El CEO desplegó en Vercel y tuvo errores; te los enviará (texto del log de build). Resuélvelos antes de la Fase 6. Causa a descartar primero: archivos obsoletos en su repositorio (RibbonCanvas.tsx, Capabilities.tsx, PageStub.tsx, layout/ContactForm.tsx) o carpeta raíz mal configurada en Vercel.
 
 ## Siguiente: Fase 6 (funcionalidad real) y luego 7 (pruebas, SEO, accesibilidad, rendimiento) y 8 (documentación y despliegue)
 Pregúntame cómo quiero recibir los mensajes del formulario antes de implementarlo. No simules envíos. Mejora lo que veas mejorable del diseño y del código, justificándolo.
 
 ## Reglas
+- En CADA entrega indica qué hay que hacer en GitHub (commit sugerido, push, comprobar Actions, archivos eliminados o renombrados, ajustes del repositorio). Es una petición permanente del CEO. Lee `docs/GITHUB.md`.
 - No inventes clientes, testimonios, certificaciones, métricas ni funciones. Contenido provisional marcado y centralizado.
 - No afirmes haber guardado, ejecutado o verificado algo que no hayas comprobado.
 - Fases pequeñas y verificables; al terminar cada una actualiza `PROJECT_STATUS.md`, `IMPLEMENTATION_LOG.md` y `README.md` y entrégame un zip sin `node_modules` ni `.next`.

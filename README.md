@@ -22,16 +22,22 @@ Tokens de color en `src/app/tokens.css`; logos en `public/brand/` (SVG monocromo
 Fuentes autoalojadas con @fontsource (Bricolage Grotesque, Inter, JetBrains Mono).
 
 ## Variables de entorno
-Ninguna por ahora (se documentarán en Fase 6 con el envío real del formulario).
+`NEXT_PUBLIC_SITE_URL` (opcional): URL pública del sitio para canonical, hreflang y sitemap. En Vercel se detecta sola. El envío real del formulario (pendiente) añadirá más variables.
 
 ## Documentación
 `docs/FASE_0_PLANIFICACION.md`, `PROJECT_STATUS.md`, `IMPLEMENTATION_LOG.md`.
 
 ## Estado y continuidad
-Fases 0 a 5 completadas; siguiente: Fase 6 (funcionalidad real). Ver `PROJECT_STATUS.md`. Para continuar el trabajo con un asistente de IA, usar `HANDOFF_PROMPT.md`.
+Fases 0 a 5 completadas y Fase 6 en curso (idiomas, selector de país, redes y responsive hechos; envío real del formulario pendiente). Ver `PROJECT_STATUS.md`. Para continuar el trabajo con un asistente de IA, usar `HANDOFF_PROMPT.md`.
 
 ## Proyectos presentados
 Detalle en `docs/APPS_BRORO.md`.
 
 ## Contribuir y versionado
 Rama principal `main`. Mensajes de commit por fase (por ejemplo "Fase 3: página principal"). No subir `.env` ni claves.
+
+## GitHub
+Guía completa en `docs/GITHUB.md`. El repositorio incluye CI (`.github/workflows/ci.yml`), Dependabot y plantillas de PR e Issues.
+
+## Idiomas
+Español e inglés (`/es`, `/en`). Guía en `docs/I18N.md`.

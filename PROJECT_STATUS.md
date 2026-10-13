@@ -1,28 +1,36 @@
 # PROJECT_STATUS
-- Empresa: BRORO (CEO: fundador). Proyecto en brorotech/ (Next.js 16.4.0, React 19.3.0, TypeScript 5, Tailwind 4).
-- Fase actual: 5 completada. Siguiente: Fase 6 (funcionalidad real/backend), luego 7 (pruebas/optimización) y 8 (entrega).
-- DECISIÓN DEL CEO: sin 3D, solo 2D. Se eliminaron three, @react-three/*, gsap, lenis y react-hook-form. No reintroducir 3D.
-- Dependencias: next, react, react-dom, motion 14.1.0, lucide-react 1.55.0, zod 4.6.7, fuentes @fontsource-variable (Bricolage Grotesque, Inter, JetBrains Mono).
+- Empresa: BRORO (el CEO es quien escribe). Proyecto en brorotech/ (Next.js 16.4.0, React 19.3.0, TypeScript 5, Tailwind 4).
+- Fase actual: 6 EN CURSO. Hecho: idiomas es/en, selector de país del teléfono, redes sociales en el footer y revisión responsive. Pendiente de la Fase 6: envío real del formulario (necesita decisión del CEO). Luego Fase 7 (pruebas/optimización) y 8 (entrega).
+- DECISIÓN DEL CEO: solo 2D, sin 3D. Dependencias: next, react, react-dom, motion 14.1.0, lucide-react 1.55.0, zod 4.6.7, fuentes @fontsource-variable. No hay librería de i18n: diccionarios propios (docs/I18N.md).
 
-## Hecho
-- Fase 2: sistema de diseño (Container, Button con flecha, Card, SectionHeading con índice 01 /, Header, menú móvil, Footer, skip link).
-- Fase 3: inicio con hero 2D (logo con parallax al cursor, anillos SVG que giran, chips flotantes), datos reales (2 apps, v1.0, offline), marquee de capacidades, servicios, proyectos destacados, diferenciadores, proceso y CTA.
-- Fase 4: /servicios, /portafolio, /portafolio/[slug] (RBIM3D y PortaCloud con módulos, ficha y siguiente proyecto), /nosotros, /contacto (formulario validado con Zod que abre el correo con mailto), /legal/privacidad y /legal/terminos (borradores marcados para revisión legal), /design-system (noindex).
-- Fase 5: titular animado, Reveal al hacer scroll, tarjetas con brillo que sigue al cursor, barra de progreso de scroll, marquee, flotación de chips, microinteracción de flecha en botones. Todo respeta prefers-reduced-motion (MotionConfig reducedMotion="user", marquee estático y sin barra de progreso).
-- Inspiración usada (patrones, no contenido): siznex.com/portfolio y icoderzsolutions.com/our-project.shtml: secciones numeradas, tarjetas de proyecto con ficha, detalle por caso, CTA con pasos. NO se copiaron cifras, clientes ni textos.
+## Estructura
+- src/app/[lang]/... (todas las páginas), src/proxy.ts (redirección por idioma), src/i18n/ (config, diccionarios es/en, países), src/content/site.ts (datos fijos y redes), src/components/{ui,layout,contact,motion}, src/sections/home.
+- Páginas: inicio, servicios, portafolio, portafolio/[slug] (rbim3d, portacloud), nosotros, contacto, legal/privacidad, legal/terminos. Además sitemap.xml y robots.txt.
 
-## Pruebas reales (Fase 4-5)
-build OK (13 rutas), tsc OK, lint OK, rutas 200 y /xyz 404, todos los enlaces internos de las páginas devuelven 200, sin canvas ni Three.js en los bundles, validación Zod probada con 5 casos, npm audit --omit=dev = 0 vulnerabilidades, JS inicial de la home ≈ 227 KB gzip.
+## Hecho en esta entrega
+- i18n con rutas /es y /en, selector ES/EN en header y menú móvil, cookie NEXT_LOCALE, hreflang/canonical, títulos y OG por idioma, 404 reales.
+- Selector de país con 245 países (nombres localizados, Perú por defecto), el prefijo cambia y se incluye país y teléfono en el mensaje.
+- Footer con contacto (correo y WhatsApp) y redes: Instagram, TikTok y LinkedIn (SIN URL todavía: se muestran apagadas, "próximamente").
+- Responsive: tamaños de texto y espacios por breakpoint, menú móvil con idioma y botón, tarjetas y formularios sin desbordes, campos a 16 px en móvil, correo del footer sin partirse.
 
-## Limitaciones y avisos conocidos
-- /portafolio/<slug inexistente> muestra la página "no encontrada" con noindex pero responde HTTP 200 (limitación de cacheComponents; dynamicParams no es compatible).
-- El formulario de contacto NO envía por servidor: abre el correo del usuario (mailto). Envío real = Fase 6, requiere decidir servicio (p. ej. Resend, Formspree o API propia) y variables de entorno.
-- NO verificado: aspecto visual y animaciones en navegador/móvil (no hay navegador en mi entorno), contraste, uso con teclado real, Lighthouse.
-- npm audit completo: 5 altas solo en cadena de desarrollo de ESLint (no afecta al sitio).
-- next.config activa cacheComponents: `new Date()` en render requiere "use cache" (ver Year.tsx).
+## Pruebas reales (con Chromium headless, anchos 320/375/768/1024/1440)
+- build, tsc y lint OK. Rutas 200; /es/xyz 404 real; / redirige según cookie y Accept-Language.
+- 70 combinaciones página × ancho: sin desbordes horizontales ni errores de consola.
+- Interacciones: cambio de idioma (URL, cookie, aria-current), menú móvil (abre, Escape, se cierra al navegar), selector de país (+1 al elegir Estados Unidos), validación con 5 mensajes localizados, WhatsApp no abre con datos inválidos y con datos válidos abre wa.me/51929259109 con país, prefijo, servicio, presupuesto y NDA.
+- Revisión visual por capturas: inicio (375, 768, 1440), contacto en inglés (1440), ficha de proyecto (768), menú móvil, footer.
+- Bugs hallados y corregidos: menú móvil no se cerraba al cambiar idioma; mensaje de error de zod sin traducir en servicio; título ausente en inicio; correo del footer partido; etiqueta de presupuesto cortada.
+
+## Limitaciones y avisos
+- El botón Copiar no se pudo probar con éxito en el navegador headless (devuelve "No se pudo copiar" sin permiso de portapapeles); en navegadores normales sobre HTTPS/localhost debería funcionar. Probar a mano.
+- Formulario: sigue sin servidor. Dos acciones reales: correo (mailto) y WhatsApp. Envío por servidor = decisión pendiente del CEO.
+- Las rutas no se traducen (/en/servicios). Mejora posible.
+- Textos en inglés redactados por Claude: revisar. Legales en ambos idiomas son borradores.
+- Compromisos escritos por el CEO que debe poder cumplir: respuesta < 24 h, soporte in situ.
+- npm audit completo: 5 altas solo en la cadena de desarrollo de ESLint; runtime = 0.
+- Vercel: el CEO mencionó errores de despliegue y aún no ha enviado el log. Causas probables: carpeta antigua sin borrar en el repositorio (ver docs/GITHUB.md sección 8) o directorio raíz mal configurado.
 
 ## Datos pendientes del CEO
-Nombre y trayectoria profesional (página Nosotros), eslogan definitivo, servicios definitivos ("y más"), capturas o enlaces de RBIM3D y PortaCloud, redes sociales, dominio, revisión legal de Privacidad y Términos, fecha de publicación en Google Play.
+URLs de Instagram, TikTok y LinkedIn y la cuarta red (el mensaje se cortó en "y"); nombre y trayectoria del CEO; eslogan definitivo; capturas de las apps; dominio; lista de tecnologías (tarjeta de stack); revisión legal; decisión de envío del formulario; log de errores de Vercel.
 
-## Siguiente tarea: Fase 6
-Decidir con el CEO cómo recibir los mensajes del formulario; implementar Route Handler con validación Zod, estados de carga, error y éxito, protección anti-spam y variables de entorno documentadas. No simular envíos.
+## Cómo repetir las pruebas visuales
+Chromium se obtiene con npm: `@sparticuz/chromium` + `puppeteer-core` (no instalados en el proyecto, solo en una carpeta aparte). Guion: abrir /es y /en en varios anchos, comparar scrollWidth con clientWidth y revisar capturas.

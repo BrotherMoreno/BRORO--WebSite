@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 
 export function AnimatedHeadline({ text }: { text: string }) {
   return (
-    <h1 aria-label={text} className="text-5xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
+    <h1 aria-label={text} className="text-4xl font-semibold leading-[1.08] sm:text-6xl lg:text-7xl">
       {text.split(" ").map((w, i) => (
         <span key={i} aria-hidden className="inline-block overflow-hidden pb-1 align-bottom">
           <motion.span className="inline-block" initial={{ y: "110%" }} animate={{ y: 0 }}

@@ -26,3 +26,21 @@
 - dynamicParams incompatible con cacheComponents: slug inexistente => 200 con página de no encontrada y noindex.
 - Formulario: mailto con validación Zod (honesto: no finge enviar).
 - Un pkill -f con el texto del comando mataba la propia shell: usar fuser -k 3100/tcp.
+## GitHub
+- Versiones de acciones consultadas en github.com (la API devolvió límite de uso): checkout v7.0.1, setup-node v7.1.0; se usan los tags mayores @v7.
+- CI verificado localmente en copia limpia (npm ci, lint, build, tsc) y sin next-env.d.ts ni tsbuildinfo (ignorados por git).
+- Riesgo detectado: copiar un zip encima de la carpeta no borra archivos eliminados (RibbonCanvas.tsx importa three y rompería el type-check). Método seguro documentado en docs/GITHUB.md.
+## Contacto rediseñado
+- Se aplicó la estructura del HTML del CEO (grid 7/5, tarjetas, píldora, brillos) con nuestros componentes; fuentes de marca en lugar de Inter para titulares.
+- Se corrigió accesibilidad respecto al HTML original: labels asociados (htmlFor), errores con role=alert, foco visible (el original quitaba el outline), enlace externo anuncia "se abre en pestaña nueva".
+- No se reprodujo el mensaje "Requerimiento recibido con éxito": sería falso sin backend. Se ofrece mailto y WhatsApp.
+- site.ts apareció con una línea whatsapp duplicada (sin url); se unificó en una sola con display, number y url.
+- tsc detectó el duplicado; lint no lo veía.
+## Fase 6 (parcial): idiomas, país, redes, responsive
+- i18n propia (diccionarios tipados + proxy.ts + carpeta [lang]) siguiendo la guía oficial de Next 16; sin next-intl para no añadir dependencia ni complicar cacheComponents.
+- Países: 245 con prefijo, generados con libphonenumber-js (solo para generar; no se instala). Nombres vía Intl.DisplayNames. Banderas emoji descartadas: Windows no las dibuja.
+- Iconos de marca: lucide v1 ya no los incluye; simple-icons (CC0). LinkedIn salió de simple-icons 13.21.0 porque las versiones nuevas lo retiraron.
+- Redes sin URL se muestran apagadas, sin enlace, para no inventar perfiles.
+- `dynamicParams` sigue incompatible con cacheComponents; ahora los slugs inválidos sí dan 404 real porque el [lang]/[...rest] y generateStaticParams cubren todo.
+- Se logró Chromium headless vía npm (@sparticuz/chromium) y se auditó responsive con capturas reales.
+- Aprendizajes: el servidor `next start` en este entorno solo vive dentro del comando que lo lanza; `fuser` no existe; `pkill -f` con el texto del comando mata la propia shell.

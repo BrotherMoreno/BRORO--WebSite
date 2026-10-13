@@ -13,3 +13,35 @@
   --border-soft: rgb(214 210 51 / 0.14);
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* Paleta del diseño de Contacto (aportada por el CEO) */
+:root {
+  --lime-500: #a3e635;
+  --lime-200: #ccff80;
+  --jade-400: #4edea3;
+  --mint-200: #bdffc2;
+  --surface-1: #0b1f17;
+  --surface-2: #0f231b;
+  --surface-3: #1a2e25;
+  --line: #424936;
+  --on-lime: #213600;
+  --on-surface: #d1e8da;
+  --on-surface-variant: #c2cab0;
+  --glass-border: rgb(163 230 53 / 0.12);
+}
+
+/* Paleta del diseño de contacto */
+:root {
+  --lime-500: #a3e635;
+  --lime-200: #ccff80;
+  --jade-400: #4edea3;
+  --mint-200: #bdffc2;
+  --surface-1: #0b1f17;
+  --surface-2: #0f231b;
+  --surface-3: #1a2e25;
+  --line: #424936;
+  --on-lime: #213600;
+  --on-surface: #d1e8da;
+  --on-surface-variant: #c2cab0;
+  --glass-border: rgb(163 230 53 / 0.12);
+}
