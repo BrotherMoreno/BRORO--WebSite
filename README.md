@@ -22,13 +22,13 @@ Tokens de color en `src/app/tokens.css`; logos en `public/brand/` (SVG monocromo
 Fuentes autoalojadas con @fontsource (Bricolage Grotesque, Inter, JetBrains Mono).
 
 ## Variables de entorno
-Ninguna por ahora (se documentarán en Fase 6 con el formulario de contacto).
+Ninguna por ahora (se documentarán en Fase 6 con el envío real del formulario).
 
 ## Documentación
 `docs/FASE_0_PLANIFICACION.md`, `PROJECT_STATUS.md`, `IMPLEMENTATION_LOG.md`.
 
 ## Estado y continuidad
-Fases 0 a 3 completadas; siguiente: Fase 4 (páginas interiores). Ver `PROJECT_STATUS.md`. Para continuar el trabajo con un asistente de IA, usar `HANDOFF_PROMPT.md`.
+Fases 0 a 5 completadas; siguiente: Fase 6 (funcionalidad real). Ver `PROJECT_STATUS.md`. Para continuar el trabajo con un asistente de IA, usar `HANDOFF_PROMPT.md`.
 
 ## Proyectos presentados
 Detalle en `docs/APPS_BRORO.md`.

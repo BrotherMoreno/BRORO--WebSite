@@ -18,3 +18,11 @@
 - Lint de React exigió función en línea en useMemo.
 - Motion ("motion/react") para titular y Reveal; sin Lenis ni GSAP por ahora: no aportaban valor todavía.
 - Diferenciadores y capacidades redactados solo con funciones confirmadas por el CEO; nada de clientes, cifras ni testimonios.
+## Fases 4 y 5 (y cambio a 2D)
+- El CEO rechazó la cinta 3D (se veía como un anillo oscuro): se eliminó todo el 3D y se rehízo el hero en 2D con motion y SVG.
+- Dependencias eliminadas: three, @react-three/fiber, @react-three/drei, @types/three, gsap, lenis, react-hook-form (el formulario valida con Zod directamente).
+- Patrones tomados de siznex.com/portfolio y icoderzsolutions.com/our-project.shtml (solo estructura: números de sección, ficha de proyecto, pasos de contacto). Sus cifras y clientes no se usan.
+- Datos mostrados solo si son reales: "2 apps", "v1.0", "offline". Sin métricas inventadas.
+- dynamicParams incompatible con cacheComponents: slug inexistente => 200 con página de no encontrada y noindex.
+- Formulario: mailto con validación Zod (honesto: no finge enviar).
+- Un pkill -f con el texto del comando mataba la propia shell: usar fuser -k 3100/tcp.

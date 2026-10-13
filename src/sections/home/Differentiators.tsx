@@ -11,7 +11,7 @@ export function Differentiators() {
   return (
     <section className="py-20">
       <Container>
-        <Reveal><SectionHeading eyebrow="Por qué BRORO" title="Lo que ya hemos construido" /></Reveal>
+        <Reveal><SectionHeading index="03" eyebrow="Por qué BRORO" title="Lo que ya hemos construido" /></Reveal>
         <ul className="mt-10 grid gap-5 sm:grid-cols-2">
           {homeContent.differentiators.map((d, i) => {
             const Icon = icons[d.icon];

@@ -1,19 +1,28 @@
 # PROJECT_STATUS
-- Empresa: BRORO (CEO: fundador). Sitio en brorotech/ (Next.js 16.4.0, React 19.3.0, TS 5, Tailwind 4).
-- Fase actual: 3 completada (página principal). Siguiente: Fase 4 (páginas interiores).
-- Hecho en Fase 2: Container, Button (primario/secundario/ghost), Card, SectionHeading; Header sticky, menú móvil accesible (aria-expanded, Escape), Footer, Logo, enlace "Saltar al contenido"; rutas /servicios /portafolio /nosotros /contacto /legal/privacidad /legal/terminos como páginas provisionales (PageStub, marcadas "En construcción · Fase 4"); /design-system (noindex) para verificar tokens y componentes.
-- Contenido editable: src/content/site.ts (nombre BRORO, correo, servicios, navegación) y src/content/projects.ts (RBIM3D y PortaCloud, textos basados en lo que entregó el CEO).
-- Pruebas Fase 2: build OK (9 rutas estáticas), tsc sin errores, lint sin errores, todas las rutas 200 y /no-existe 404, enlaces del header/footer apuntan a rutas existentes, mailto correcto, lang="es", skip link presente.
-- NO verificado: revisión visual en navegador/móvil (no hay navegador en mi entorno), contraste, teclado real, menú móvil en dispositivo. Hacerlo en VS Code con `npm run dev`.
-- Avisos: npm audit = 5 altas solo en cadena dev de ESLint (0 en runtime). GSAP: licencia "no charge" propia, revisar. next.config activa cacheComponents: `new Date()` en render requiere "use cache" (ver Year.tsx).
-- Pendiente de confirmar: eslogan y propuesta de valor, servicios definitivos ("y más"), capturas/enlaces de RBIM3D y PortaCloud, información profesional del CEO para Nosotros, redes, textos legales revisados por un profesional, fecha real de publicación en Google Play (se muestra "próximamente").
-- Siguiente tarea: Fase 3: hero con escena de cinta (R3F con fallback), servicios, proyectos destacados, proceso, CTA.
+- Empresa: BRORO (CEO: fundador). Proyecto en brorotech/ (Next.js 16.4.0, React 19.3.0, TypeScript 5, Tailwind 4).
+- Fase actual: 5 completada. Siguiente: Fase 6 (funcionalidad real/backend), luego 7 (pruebas/optimización) y 8 (entrega).
+- DECISIÓN DEL CEO: sin 3D, solo 2D. Se eliminaron three, @react-three/*, gsap, lenis y react-hook-form. No reintroducir 3D.
+- Dependencias: next, react, react-dom, motion 14.1.0, lucide-react 1.55.0, zod 4.6.7, fuentes @fontsource-variable (Bricolage Grotesque, Inter, JetBrains Mono).
 
-## Fase 3 (página principal)
-- Hecho: Hero con titular animado (Motion) y cinta 3D (banda de Möbius con degradado de marca, R3F, carga diferida y reacción al cursor); secciones Quiénes somos, Servicios, Proyectos destacados (RBIM3D y PortaCloud), Por qué BRORO, Capacidades, Proceso y CTA con correo. Revelado al hacer scroll con Motion; MotionConfig reducedMotion="user".
-- 3D estático (logo PNG) en pantallas menores a 768 px y con prefers-reduced-motion. El primer render siempre es estático y el 3D se activa en cliente.
-- Contenido: src/content/home.ts (diferenciadores y capacidades salen solo de funciones que el CEO describió; proceso y textos de presentación PROVISIONALES).
-- Pruebas Fase 3: build OK, tsc OK, lint OK, rutas 200 y 404 correcto, todas las secciones presentes en el HTML, sin <canvas> ni Three.js en la carga inicial (chunk de ≈900 KB diferido), geometría de la cinta sin NaN.
-- NO verificado: aspecto visual real, rendimiento (Lighthouse), fluidez del 3D en móviles de gama baja, comportamiento sin WebGL (no hay fallback si WebGL falla), contraste. Lenis y GSAP siguen sin usarse.
-- Pendiente de decisión del CEO: eslogan, textos de Quiénes somos y Proceso, capturas de las apps.
-- Siguiente tarea: Fase 4 (Servicios, Portafolio, detalle /portafolio/[slug], Nosotros, Contacto, legales).
+## Hecho
+- Fase 2: sistema de diseño (Container, Button con flecha, Card, SectionHeading con índice 01 /, Header, menú móvil, Footer, skip link).
+- Fase 3: inicio con hero 2D (logo con parallax al cursor, anillos SVG que giran, chips flotantes), datos reales (2 apps, v1.0, offline), marquee de capacidades, servicios, proyectos destacados, diferenciadores, proceso y CTA.
+- Fase 4: /servicios, /portafolio, /portafolio/[slug] (RBIM3D y PortaCloud con módulos, ficha y siguiente proyecto), /nosotros, /contacto (formulario validado con Zod que abre el correo con mailto), /legal/privacidad y /legal/terminos (borradores marcados para revisión legal), /design-system (noindex).
+- Fase 5: titular animado, Reveal al hacer scroll, tarjetas con brillo que sigue al cursor, barra de progreso de scroll, marquee, flotación de chips, microinteracción de flecha en botones. Todo respeta prefers-reduced-motion (MotionConfig reducedMotion="user", marquee estático y sin barra de progreso).
+- Inspiración usada (patrones, no contenido): siznex.com/portfolio y icoderzsolutions.com/our-project.shtml: secciones numeradas, tarjetas de proyecto con ficha, detalle por caso, CTA con pasos. NO se copiaron cifras, clientes ni textos.
+
+## Pruebas reales (Fase 4-5)
+build OK (13 rutas), tsc OK, lint OK, rutas 200 y /xyz 404, todos los enlaces internos de las páginas devuelven 200, sin canvas ni Three.js en los bundles, validación Zod probada con 5 casos, npm audit --omit=dev = 0 vulnerabilidades, JS inicial de la home ≈ 227 KB gzip.
+
+## Limitaciones y avisos conocidos
+- /portafolio/<slug inexistente> muestra la página "no encontrada" con noindex pero responde HTTP 200 (limitación de cacheComponents; dynamicParams no es compatible).
+- El formulario de contacto NO envía por servidor: abre el correo del usuario (mailto). Envío real = Fase 6, requiere decidir servicio (p. ej. Resend, Formspree o API propia) y variables de entorno.
+- NO verificado: aspecto visual y animaciones en navegador/móvil (no hay navegador en mi entorno), contraste, uso con teclado real, Lighthouse.
+- npm audit completo: 5 altas solo en cadena de desarrollo de ESLint (no afecta al sitio).
+- next.config activa cacheComponents: `new Date()` en render requiere "use cache" (ver Year.tsx).
+
+## Datos pendientes del CEO
+Nombre y trayectoria profesional (página Nosotros), eslogan definitivo, servicios definitivos ("y más"), capturas o enlaces de RBIM3D y PortaCloud, redes sociales, dominio, revisión legal de Privacidad y Términos, fecha de publicación en Google Play.
+
+## Siguiente tarea: Fase 6
+Decidir con el CEO cómo recibir los mensajes del formulario; implementar Route Handler con validación Zod, estados de carga, error y éxito, protección anti-spam y variables de entorno documentadas. No simular envíos.

@@ -6,6 +6,12 @@ import { HeroVisual } from "./HeroVisual";
 import { site } from "@/content/site";
 import { homeContent } from "@/content/home";
 
+const facts = [
+  ["2", "apps Android propias"],
+  ["v1.0", "rumbo a Google Play"],
+  ["Offline", "funcionan sin internet"],
+];
+
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
@@ -17,9 +23,14 @@ export function Hero() {
           <Reveal delay={0.5}>
             <p className="mt-6 max-w-xl text-lg text-muted">{site.description}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/portafolio">Ver proyectos</Button>
+              <Button href="/portafolio" arrow>Ver proyectos</Button>
               <Button href="/contacto" variant="secondary">Hablemos</Button>
             </div>
+            <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-[var(--border-soft)] pt-6">
+              {facts.map(([n, l]) => (
+                <div key={n}><dt className="font-display text-2xl font-semibold text-lime-300">{n}</dt><dd className="mt-1 text-xs text-muted">{l}</dd></div>
+              ))}
+            </dl>
           </Reveal>
         </div>
         <HeroVisual />

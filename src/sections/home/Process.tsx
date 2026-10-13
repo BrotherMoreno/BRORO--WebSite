@@ -7,7 +7,7 @@ export function Process() {
   return (
     <section className="py-20">
       <Container>
-        <Reveal><SectionHeading eyebrow="Proceso" title="Cómo trabajamos" /></Reveal>
+        <Reveal><SectionHeading index="04" eyebrow="Proceso" title="Cómo trabajamos" /></Reveal>
         <ol className="mt-10 grid gap-8 md:grid-cols-4">
           {homeContent.process.map((s, i) => (
             <li key={s.title}>
