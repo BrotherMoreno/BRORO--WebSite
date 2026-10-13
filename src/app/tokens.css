@@ -1,0 +1,15 @@
+/* Tokens de marca (derivados del logo; ver docs/FASE_0_PLANIFICACION.md) */
+:root {
+  --lime-400: #d6d233;
+  --lime-300: #e8e94a;
+  --leaf-500: #4c8439;
+  --forest-700: #164427;
+  --forest-800: #0b301e;
+  --forest-900: #0c2306;
+  --ink-950: #050f09;
+  --paper-50: #f4f6ef;
+  --text-primary: #eef2e6;
+  --text-muted: #9db09a;
+  --border-soft: rgb(214 210 51 / 0.14);
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+}

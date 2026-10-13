@@ -1,0 +1,11 @@
+# PROJECT_STATUS
+- Proyecto: plataforma web de la empresa de software (ruta: brorotech/).
+- Stack: Next.js 16.4.0, React 19.3.0, TypeScript 5 (create-next-app lo fijó en ^5; TS 7 existe en npm, no adoptado), Tailwind 4.
+- Librerías instaladas: motion 14.1.0, gsap 3.15.0, lenis 1.3.26, three 0.186.1, @react-three/fiber 9.8.1, @react-three/drei 10.7.9, lucide-react 1.55.0, zod 4.6.7, react-hook-form 7.90.0, fuentes @fontsource-variable. Aún no usadas en código.
+- Fase actual: 1 completada. Siguiente: Fase 2 (sistema de diseño).
+- Hecho: proyecto creado, tokens de marca (src/app/tokens.css), fuentes, logos en public/brand, src/content/site.ts, página temporal.
+- Pruebas reales Fase 1: `npm run build` OK, `tsc --noEmit` sin errores, `npm run lint` sin errores, `npm start` responde 200 en / y en el logo.
+- Errores/avisos conocidos: `npm audit` reporta 5 vulnerabilidades altas solo en la cadena de desarrollo de ESLint (braces); `npm audit --omit=dev` = 0. No se fuerza el fix (bajaría eslint-config-next a v14).
+- Notas: el SVG proporcionado es monocromo (negro); el degradado está solo en el PNG de 500 px. Next 16 incluye AGENTS.md y docs en node_modules/next/dist/docs; el next.config.ts generado activa cacheComponents y partialPrefetching: revisar al crear rutas dinámicas.
+- Pendiente de confirmar: nombre oficial, eslogan, servicios definitivos, textos de PortaCloud y RBIM3D, redes.
+- Siguiente tarea: Fase 2: header, footer, navegación responsive, botones, tarjetas.

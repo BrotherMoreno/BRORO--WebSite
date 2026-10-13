@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@theme inline {
+  --color-lime-400: var(--lime-400);
+  --color-lime-300: var(--lime-300);
+  --color-leaf-500: var(--leaf-500);
+  --color-forest-700: var(--forest-700);
+  --color-forest-800: var(--forest-800);
+  --color-forest-900: var(--forest-900);
+  --color-ink-950: var(--ink-950);
+  --color-paper-50: var(--paper-50);
+  --color-muted: var(--text-muted);
+  --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+}
+
+html { background: var(--ink-950); color-scheme: dark; }
+body {
+  background: var(--ink-950);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
