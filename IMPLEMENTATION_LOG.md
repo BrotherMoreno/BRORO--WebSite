@@ -13,3 +13,8 @@
 - cacheComponents rechazó `new Date()` en el footer: se aisló en Year.tsx con "use cache".
 - Marca actualizada a BRORO. RBIM3D y PortaCloud registrados como proyectos reales; no se redactan resultados ni métricas. Textos de clima/colaboración de PortaCloud marcados por el CEO como no confirmados: no se prometen en la web.
 - Las dos apps se anuncian como "próximamente en Google Play" (v1.0), sin insignia oficial de Google Play.
+## Fase 3
+- Cinta del hero: ParametricGeometry (Möbius) con color por vértice simétrico en u para evitar costura; Canvas cargado con next/dynamic (ssr:false) solo si no hay reduced-motion ni pantalla pequeña (useSyncExternalStore con snapshot de servidor true para evitar desajuste de hidratación).
+- Lint de React exigió función en línea en useMemo.
+- Motion ("motion/react") para titular y Reveal; sin Lenis ni GSAP por ahora: no aportaban valor todavía.
+- Diferenciadores y capacidades redactados solo con funciones confirmadas por el CEO; nada de clientes, cifras ni testimonios.
