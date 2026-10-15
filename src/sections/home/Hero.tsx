@@ -1,7 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { AnimatedHeadline } from "@/components/motion/AnimatedHeadline";
-import { Reveal } from "@/components/motion/Reveal";
 import { HeroVisual } from "./HeroVisual";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dict } from "@/i18n/types";
@@ -14,7 +13,7 @@ export function Hero({ lang, dict }: { lang: Locale; dict: Dict }) {
         <div>
           <p className="mb-4 font-mono text-xs uppercase tracking-widest text-lime-400 sm:mb-5">{dict.home.eyebrow}</p>
           <AnimatedHeadline text={dict.meta.tagline} />
-          <Reveal delay={0.5}>
+          <div className="enter" style={{ "--d": "0.45s" } as React.CSSProperties}>
             <p className="mt-5 max-w-xl text-base text-muted sm:mt-6 sm:text-lg">{dict.meta.description}</p>
             <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
               <Button href={localePath(lang, "/portafolio")} arrow>{dict.common.viewProjects}</Button>
@@ -25,7 +24,7 @@ export function Hero({ lang, dict }: { lang: Locale; dict: Dict }) {
                 <div key={n}><dt className="font-display text-xl font-semibold text-lime-300 sm:text-2xl">{n}</dt><dd className="mt-1 text-xs text-muted">{l}</dd></div>
               ))}
             </dl>
-          </Reveal>
+          </div>
         </div>
         <HeroVisual />
       </Container>

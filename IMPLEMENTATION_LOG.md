@@ -44,3 +44,13 @@
 - `dynamicParams` sigue incompatible con cacheComponents; ahora los slugs inválidos sí dan 404 real porque el [lang]/[...rest] y generateStaticParams cubren todo.
 - Se logró Chromium headless vía npm (@sparticuz/chromium) y se auditó responsive con capturas reales.
 - Aprendizajes: el servidor `next start` en este entorno solo vive dentro del comando que lo lanza; `fuser` no existe; `pkill -f` con el texto del comando mata la propia shell.
+
+## Mejora continua (2026-10-14)
+- El CEO aclaró que "idiomas" era la traducción del navegador (captura del diálogo de Chrome), no un botón: se eliminó LanguageSwitcher y la cookie NEXT_LOCALE; se actualizó la política de privacidad. Alternativa descartada: widget de Google Translate (no se puede probar aquí, scripts/cookies de terceros, riesgo de conflicto con React).
+- URLs de redes limpiadas: TikTok sin `_r`/`_t`; LinkedIn sin `viewAsMember` (parámetro de vista de administrador).
+- Contacto: se implementó el resto del HTML. Se suavizó "entrega sin errores" y se unificó el tono. details/summary nativo para la FAQ (accesible sin JS).
+- Investigación: umbrales Core Web Vitals (web.dev), criterios nuevos WCAG 2.2, cabeceras OWASP. La búsqueda de la guía SEO de Google solo devolvió copias de terceros: no se citó.
+- Medición con Lighthouse: LCP de Contacto = título oculto por `Reveal` hasta cargar JS (render delay 2,1 s) → animaciones de entrada con CSS (0,9 s). FCP móvil 1,8 s → 0,9 s al pasar de @fontsource a next/font/local (precarga + fuente de reserva ajustada). `priority` de next/image está obsoleto en Next 16: se usa fetchPriority.
+- Un test propio era débil (FAQ "enfocable") y se eliminó; otro tenía un selector erróneo y se corrigió: los tests se revisan igual que el código.
+- Aprendizaje: createBrowserContext falla con los args de @sparticuz/chromium → un navegador por escenario.
+- La simulación del procedimiento del usuario (copia limpia + npm ci) destapó que `tsc --noEmit` falla antes del primer build (PageProps/LayoutProps se generan al compilar). `check` pasó a lint → build → tsc. Moraleja: probar siempre desde una copia limpia, no desde la carpeta de trabajo.

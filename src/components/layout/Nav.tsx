@@ -3,9 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Button } from "../ui/Button";
-import type { Locale } from "@/i18n/config";
 
 type Item = { href: string; label: string };
 const link = "rounded-md px-3 py-2 text-sm transition-colors hover:text-lime-300 focus-visible:outline-2 focus-visible:outline-lime-300";
@@ -28,9 +26,9 @@ export function NavLinks({ items, label }: { items: Item[]; label: string }) {
   );
 }
 
-type MobileProps = { items: Item[]; lang: Locale; navLabel: string; open: string; close: string; languageLabel: string; cta: Item };
+type MobileProps = { items: Item[]; navLabel: string; open: string; close: string; cta: Item };
 
-export function MobileNav({ items, lang, navLabel, open: openLabel, close, languageLabel, cta }: MobileProps) {
+export function MobileNav({ items, navLabel, open: openLabel, close, cta }: MobileProps) {
   const path = usePathname();
   // El menú se considera abierto solo en la ruta donde se abrió: al navegar (incluido cambiar de idioma) se cierra solo.
   const [openAt, setOpenAt] = useState<string | null>(null);
@@ -55,9 +53,8 @@ export function MobileNav({ items, lang, navLabel, open: openLabel, close, langu
               <li key={i.href}><Link href={i.href} onClick={() => setOpen(false)} className="block py-3 text-lg font-medium">{i.label}</Link></li>
             ))}
           </ul>
-          <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[var(--border-soft)] pt-4">
-            <LanguageSwitcher lang={lang} label={languageLabel} className="inline-flex" />
-            <Button href={cta.href} className="grow !py-2.5 sm:grow-0">{cta.label}</Button>
+          <div className="mt-4 border-t border-[var(--border-soft)] pt-4">
+            <Button href={cta.href} className="w-full !py-2.5">{cta.label}</Button>
           </div>
         </nav>
       )}

@@ -28,7 +28,7 @@ Fuentes autoalojadas con @fontsource (Bricolage Grotesque, Inter, JetBrains Mono
 `docs/FASE_0_PLANIFICACION.md`, `PROJECT_STATUS.md`, `IMPLEMENTATION_LOG.md`.
 
 ## Estado y continuidad
-Fases 0 a 5 completadas y Fase 6 en curso (idiomas, selector de país, redes y responsive hechos; envío real del formulario pendiente). Ver `PROJECT_STATUS.md`. Para continuar el trabajo con un asistente de IA, usar `HANDOFF_PROMPT.md`.
+Fases 0 a 5 completadas y Fase 6 casi completa (idiomas, país, redes, responsive y contacto hechos; envío real del formulario pendiente). Ver `PROJECT_STATUS.md`. Para continuar el trabajo con un asistente de IA, usar `HANDOFF_PROMPT.md`.
 
 ## Proyectos presentados
 Detalle en `docs/APPS_BRORO.md`.
@@ -40,4 +40,7 @@ Rama principal `main`. Mensajes de commit por fase (por ejemplo "Fase 3: página
 Guía completa en `docs/GITHUB.md`. El repositorio incluye CI (`.github/workflows/ci.yml`), Dependabot y plantillas de PR e Issues.
 
 ## Idiomas
-Español e inglés (`/es`, `/en`). Guía en `docs/I18N.md`.
+Español e inglés nativos (`/es`, `/en`); otros idiomas con la traducción del navegador. Guía en `docs/I18N.md`.
+
+## Calidad y pruebas
+`npm run check` (lint + tipos + build). Reglas y resultados en `docs/QUALITY_RULES.md`. Pruebas visuales y de accesibilidad: `tools/qa/README.md`. Procedimiento de GitHub: `docs/GITHUB.md`.

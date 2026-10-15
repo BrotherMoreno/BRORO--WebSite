@@ -41,10 +41,10 @@ export function HeroVisual() {
         <circle cx="200" cy="200" r="110" fill="none" stroke="#164427" strokeWidth="2" />
       </motion.svg>
       <motion.div style={{ x: logoX, y: logoY }} className="relative">
-        <Image src="/brand/logo-gradient.png" alt="" width={300} height={300} priority className="w-44 sm:w-56" />
+        <Image src="/brand/logo-gradient.png" alt="" width={300} height={300} loading="eager" fetchPriority="high" className="w-44 sm:w-56" />
       </motion.div>
       {chips.map((c) => (
-        <motion.span key={c.t} className={`absolute rounded-full border border-lime-400/30 bg-ink-950/80 px-3 py-1 font-mono text-xs text-lime-300 backdrop-blur ${c.cls}`}
+        <motion.span key={c.t} translate="no" className={`absolute rounded-full border border-lime-400/30 bg-ink-950/80 px-3 py-1 font-mono text-xs text-lime-300 backdrop-blur ${c.cls}`}
           animate={{ y: [0, -8, 0] }} transition={{ duration: 5, delay: c.d, repeat: Infinity, ease: "easeInOut" }}>
           {c.t}
         </motion.span>

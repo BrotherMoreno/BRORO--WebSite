@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { CopyButton } from "@/components/contact/CopyButton";
+import { StackCard, WhyChoose, Faq, ClosingCta } from "@/components/contact/ContactSections";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { getCountryOptions } from "@/i18n/country-options";
 import { site } from "@/content/site";
@@ -28,7 +29,7 @@ export default async function Page({ params }: PageProps<"/[lang]/contacto">) {
       <div aria-hidden className="pointer-events-none absolute right-0 top-1/2 size-64 rounded-full bg-jade-400/10 blur-[100px] sm:right-10 sm:size-80" />
       <Container className="relative">
         <section className="flex flex-col items-center pb-10 pt-10 text-center sm:pb-14 sm:pt-16">
-          <Reveal>
+          <div className="enter">
             <h1 className="mx-auto max-w-4xl text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               {c.title}{" "}
               <span className="bg-gradient-to-r from-lime-200 via-jade-400 to-mint-200 bg-clip-text text-transparent">{c.highlight}</span>
@@ -38,11 +39,11 @@ export default async function Page({ params }: PageProps<"/[lang]/contacto">) {
               <Globe size={16} className="text-lime-500" aria-hidden />
               <span>{c.pill[0]}</span><span aria-hidden className="text-line">•</span><span className="text-jade-400">{c.pill[1]}</span>
             </p>
-          </Reveal>
+          </div>
         </section>
 
         <section className="grid items-start gap-6 pb-16 sm:gap-8 sm:pb-24 lg:grid-cols-12">
-          <Reveal className="lg:col-span-7"><ContactForm dict={c.form} countries={countries} /></Reveal>
+          <div id="project-form" className="scroll-mt-24 lg:col-span-7"><Reveal><ContactForm dict={c.form} countries={countries} /></Reveal></div>
           <div className="flex flex-col gap-6 lg:col-span-5">
             <Reveal delay={0.1}>
               <div className={card}>
@@ -66,14 +67,14 @@ export default async function Page({ params }: PageProps<"/[lang]/contacto">) {
                 <div className="flex items-center justify-between gap-3 rounded-lg bg-surface-2 p-3">
                   <div className="flex min-w-0 items-center gap-3">
                     <Mail size={20} className="shrink-0 text-lime-500" aria-hidden />
-                    <div className="min-w-0"><p className="font-mono text-[10px] uppercase text-on-surface-variant">{c.channels.email}</p><a href={`mailto:${site.email}`} className="block truncate font-mono text-sm hover:text-lime-300">{site.email}</a></div>
+                    <div className="min-w-0"><p className="font-mono text-[10px] uppercase text-on-surface-variant">{c.channels.email}</p><a translate="no" href={`mailto:${site.email}`} className="block truncate font-mono text-sm hover:text-lime-300">{site.email}</a></div>
                   </div>
                   <CopyButton text={site.email} labels={{ copy: c.channels.copy, copied: c.channels.copied, fail: c.channels.copyFail }} />
                 </div>
                 <div className="flex items-center justify-between gap-3 rounded-lg bg-surface-2 p-3">
                   <div className="flex min-w-0 items-center gap-3">
                     <MessageCircle size={20} className="shrink-0 text-jade-400" aria-hidden />
-                    <div><p className="font-mono text-[10px] uppercase text-on-surface-variant">{c.channels.whatsapp}</p><p className="font-mono text-sm">{site.whatsapp.display}</p></div>
+                    <div><p className="font-mono text-[10px] uppercase text-on-surface-variant">{c.channels.whatsapp}</p><p translate="no" className="font-mono text-sm">{site.whatsapp.display}</p></div>
                   </div>
                   <a href={site.whatsapp.url} target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded bg-jade-400/15 px-2.5 py-1.5 font-mono text-[11px] font-semibold text-jade-400 transition-colors hover:bg-jade-400 hover:text-ink-950 focus-visible:outline-2 focus-visible:outline-jade-400">
                     {c.channels.chat} <ArrowUpRight size={14} aria-hidden /><span className="sr-only">{dict.common.newTab}</span>
@@ -81,8 +82,12 @@ export default async function Page({ params }: PageProps<"/[lang]/contacto">) {
                 </div>
               </div>
             </Reveal>
+            <Reveal delay={0.3}><StackCard dict={dict} /></Reveal>
           </div>
         </section>
+        <WhyChoose dict={dict} />
+        <Faq dict={dict} />
+        <ClosingCta dict={dict} />
       </Container>
     </div>
   );

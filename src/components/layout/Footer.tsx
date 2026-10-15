@@ -22,8 +22,8 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
         <div>
           <p className="mb-3 font-mono text-xs uppercase tracking-widest text-lime-400">{f.contact}</p>
           <ul className="space-y-2 text-sm">
-            <li><a href={`mailto:${site.email}`} className="inline-flex items-start gap-2 [overflow-wrap:anywhere] hover:text-lime-300"><Mail size={16} className="mt-0.5 shrink-0 text-lime-400" aria-hidden />{site.email}</a></li>
-            <li><a href={site.whatsapp.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-lime-300"><MessageCircle size={16} className="shrink-0 text-lime-400" aria-hidden />{site.whatsapp.display}<span className="sr-only">{dict.common.newTab}</span></a></li>
+            <li><a translate="no" href={`mailto:${site.email}`} className="inline-flex items-start gap-2 [overflow-wrap:anywhere] hover:text-lime-300"><Mail size={16} className="mt-0.5 shrink-0 text-lime-400" aria-hidden />{site.email}</a></li>
+            <li><a translate="no" href={site.whatsapp.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-lime-300"><MessageCircle size={16} className="shrink-0 text-lime-400" aria-hidden />{site.whatsapp.display}<span className="sr-only">{dict.common.newTab}</span></a></li>
           </ul>
           <p className="mb-3 mt-6 font-mono text-xs uppercase tracking-widest text-lime-400">{f.follow}</p>
           <Socials soon={f.soon} />

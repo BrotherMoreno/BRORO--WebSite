@@ -2,7 +2,6 @@ import { Logo } from "./Logo";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { NavLinks, MobileNav } from "./Nav";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dict } from "@/i18n/types";
 
@@ -15,9 +14,8 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dict }) {
         <Logo lang={lang} label={dict.common.logoLabel} />
         <NavLinks items={items} label={dict.common.mainNav} />
         <div className="flex items-center gap-2 sm:gap-3">
-          <LanguageSwitcher lang={lang} label={dict.common.language} className="hidden md:inline-flex" />
-          <div className="hidden lg:block"><Button href={cta.href} className="!py-2">{cta.label}</Button></div>
-          <MobileNav items={items} lang={lang} navLabel={dict.common.mobileNav} open={dict.common.openMenu} close={dict.common.closeMenu} languageLabel={dict.common.language} cta={cta} />
+          <div className="hidden md:block"><Button href={cta.href} className="!py-2">{cta.label}</Button></div>
+          <MobileNav items={items} navLabel={dict.common.mobileNav} open={dict.common.openMenu} close={dict.common.closeMenu} cta={cta} />
         </div>
       </Container>
     </header>

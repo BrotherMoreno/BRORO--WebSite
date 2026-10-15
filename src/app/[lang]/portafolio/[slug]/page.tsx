@@ -34,7 +34,7 @@ export default async function Page({ params }: PageProps<"/[lang]/portafolio/[sl
   const facts = [[t.platform, p.platform], [t.version, `${p.version} · ${p.status}`], [t.offline, p.offline], [t.category, p.category]];
   return (
     <>
-      <PageHeader lang={lang} dict={dict} crumbs={[{ label: t.header.crumb, href: localePath(lang, "/portafolio") }, { label: p.name }]} eyebrow={p.category} title={p.name} text={p.summary} />
+      <PageHeader lang={lang} dict={dict} crumbs={[{ label: t.header.crumb, href: localePath(lang, "/portafolio") }, { label: p.name }]} eyebrow={p.category} title={p.name} text={p.summary} noTranslateTitle />
       <section className="py-12 sm:py-16">
         <Container className="grid gap-8 lg:grid-cols-[1fr_320px] lg:gap-10">
           <div className="order-2 space-y-5 sm:space-y-6 lg:order-1">
@@ -60,7 +60,7 @@ export default async function Page({ params }: PageProps<"/[lang]/portafolio/[sl
             <div className="rounded-3xl border border-dashed border-[var(--border-soft)] p-5 text-sm text-muted sm:p-6">{t.shots}</div>
             <Link href={localePath(lang, `/portafolio/${next.slug}`)} className="block rounded-3xl border border-[var(--border-soft)] p-5 transition hover:border-lime-400/50 sm:p-6">
               <span className="font-mono text-xs uppercase tracking-widest text-muted">{t.next}</span>
-              <span className="mt-2 block font-display text-2xl font-semibold">{next.name} →</span>
+              <span translate="no" className="mt-2 block font-display text-2xl font-semibold">{next.name} →</span>
             </Link>
           </aside>
         </Container>

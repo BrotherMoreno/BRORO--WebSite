@@ -1,36 +1,35 @@
 # PROJECT_STATUS
-- Empresa: BRORO (el CEO es quien escribe). Proyecto en brorotech/ (Next.js 16.4.0, React 19.3.0, TypeScript 5, Tailwind 4).
-- Fase actual: 6 EN CURSO. Hecho: idiomas es/en, selector de país del teléfono, redes sociales en el footer y revisión responsive. Pendiente de la Fase 6: envío real del formulario (necesita decisión del CEO). Luego Fase 7 (pruebas/optimización) y 8 (entrega).
-- DECISIÓN DEL CEO: solo 2D, sin 3D. Dependencias: next, react, react-dom, motion 14.1.0, lucide-react 1.55.0, zod 4.6.7, fuentes @fontsource-variable. No hay librería de i18n: diccionarios propios (docs/I18N.md).
+Última actualización: 2026-10-14. Empresa: BRORO. Proyecto: Next.js 16.4.0 · React 19.3.0 · TypeScript 5 · Tailwind 4 · motion 14.1.0 · lucide-react · zod 4. Sin 3D y sin selector de idioma propio (decisiones del CEO).
 
-## Estructura
-- src/app/[lang]/... (todas las páginas), src/proxy.ts (redirección por idioma), src/i18n/ (config, diccionarios es/en, países), src/content/site.ts (datos fijos y redes), src/components/{ui,layout,contact,motion}, src/sections/home.
-- Páginas: inicio, servicios, portafolio, portafolio/[slug] (rbim3d, portacloud), nosotros, contacto, legal/privacidad, legal/terminos. Además sitemap.xml y robots.txt.
+## Estado
+Fases 0–5 completadas. Fase 6 casi completa: idiomas nativos es/en, selector de país, redes, responsive, contacto completo y mejora continua de calidad. **Pendiente de la Fase 6: envío real del formulario** (decisión del CEO). Luego Fase 7 (pruebas en dispositivos reales, optimización) y Fase 8 (despliegue/entrega).
 
-## Hecho en esta entrega
-- i18n con rutas /es y /en, selector ES/EN en header y menú móvil, cookie NEXT_LOCALE, hreflang/canonical, títulos y OG por idioma, 404 reales.
-- Selector de país con 245 países (nombres localizados, Perú por defecto), el prefijo cambia y se incluye país y teléfono en el mensaje.
-- Footer con contacto (correo y WhatsApp) y redes: Instagram, TikTok y LinkedIn (SIN URL todavía: se muestran apagadas, "próximamente").
-- Responsive: tamaños de texto y espacios por breakpoint, menú móvil con idioma y botón, tarjetas y formularios sin desbordes, campos a 16 px en móvil, correo del footer sin partirse.
+## Esta entrega
+- Redes: TikTok y LinkedIn con enlace limpio (sin parámetros de rastreo); Instagram pendiente (icono apagado).
+- Idiomas: se quitó el botón ES/EN (el CEO quiere la traducción automática del navegador, como en su captura de Chrome). Se mantienen /es y /en nativos con redirección por Accept-Language; marcas con translate="no"; sin cookies.
+- Contacto completo según code.html del CEO: tarjeta de stack, "¿Por qué elegir a BRORO?" (6 tarjetas), FAQ (5, con details/summary nativo), banner final con diagnóstico técnico y ancla al formulario. Afirmaciones comerciales a confirmar: docs/PENDIENTES_Y_AFIRMACIONES.md ("sin errores" suavizado; "usted"→"tú").
+- Calidad (docs/QUALITY_RULES.md, con fuentes): cabeceras de seguridad OWASP, JSON-LD Organization, iconos de marca (el favicon era el genérico de Next), imagen Open Graph, pantalla de error, next/font/local (3 tipografías latinas precargadas, antes CSS), animaciones de entrada solo con CSS en lo que se ve al abrir, fetchPriority en la imagen principal, script `npm run check`.
+- Kit QA reutilizable: tools/qa (Chromium headless, axe-core, Lighthouse). Documentación nueva: QUALITY_RULES, PENDIENTES_Y_AFIRMACIONES, PLANTILLA_README_APP; GITHUB.md e I18N.md reescritos; HANDOFF_PROMPT.md mejorado.
+- Dependencias eliminadas: @fontsource-variable/* (3). Archivos eliminados respecto a la entrega anterior: src/components/layout/LanguageSwitcher.tsx.
 
-## Pruebas reales (con Chromium headless, anchos 320/375/768/1024/1440)
-- build, tsc y lint OK. Rutas 200; /es/xyz 404 real; / redirige según cookie y Accept-Language.
-- 70 combinaciones página × ancho: sin desbordes horizontales ni errores de consola.
-- Interacciones: cambio de idioma (URL, cookie, aria-current), menú móvil (abre, Escape, se cierra al navegar), selector de país (+1 al elegir Estados Unidos), validación con 5 mensajes localizados, WhatsApp no abre con datos inválidos y con datos válidos abre wa.me/51929259109 con país, prefijo, servicio, presupuesto y NDA.
-- Revisión visual por capturas: inicio (375, 768, 1440), contacto en inglés (1440), ficha de proyecto (768), menú móvil, footer.
-- Bugs hallados y corregidos: menú móvil no se cerraba al cambiar idioma; mensaje de error de zod sin traducir en servicio; título ausente en inicio; correo del footer partido; etiqueta de presupuesto cortada.
+## Pruebas reales (Chromium headless, laboratorio local)
+- npm run check OK. Clean install desde el zip OK.
+- axe-core 4.14 (WCAG 2.0–2.2 AA + buenas prácticas): 0 violaciones en 14 páginas × 2 anchos (se comprobó que axe detecta fallos en una página defectuosa a propósito).
+- Desbordes: 0 en 14 páginas × 5 anchos (320–1440) y sin errores de consola.
+- Interacciones (16): menú móvil, país (245; +1 al elegir EE. UU.), 5 errores localizados, WhatsApp con datos correctos, FAQ.
+- Lighthouse: accesibilidad 100, buenas prácticas 100, SEO 100 en todas las páginas medidas; rendimiento desktop 98–100, móvil 88–95; CLS 0; FCP móvil ≈ 0,9 s; **LCP móvil de laboratorio 2,9–3,8 s (objetivo ≤ 2,5 s: NO cumplido en laboratorio)**.
+- Revisión visual por capturas: inicio (375, 768, 1440), contacto (390, 1440), ficha de proyecto (768), menú móvil, footer, imagen OG.
 
-## Limitaciones y avisos
-- El botón Copiar no se pudo probar con éxito en el navegador headless (devuelve "No se pudo copiar" sin permiso de portapapeles); en navegadores normales sobre HTTPS/localhost debería funcionar. Probar a mano.
-- Formulario: sigue sin servidor. Dos acciones reales: correo (mailto) y WhatsApp. Envío por servidor = decisión pendiente del CEO.
-- Las rutas no se traducen (/en/servicios). Mejora posible.
-- Textos en inglés redactados por Claude: revisar. Legales en ambos idiomas son borradores.
-- Compromisos escritos por el CEO que debe poder cumplir: respuesta < 24 h, soporte in situ.
-- npm audit completo: 5 altas solo en la cadena de desarrollo de ESLint; runtime = 0.
-- Vercel: el CEO mencionó errores de despliegue y aún no ha enviado el log. Causas probables: carpeta antigua sin borrar en el repositorio (ver docs/GITHUB.md sección 8) o directorio raíz mal configurado.
+## NO verificado
+Dispositivos reales (iOS/Android), lector de pantalla, datos de usuarios reales (Core Web Vitals de campo), botón Copiar con éxito (el navegador headless no concede portapapeles), enlaces de TikTok/LinkedIn (no pude abrirlos), envío de correo (mailto) en clientes reales, despliegue en Vercel (error reportado sin log), CI en GitHub Actions (probado solo en local).
 
-## Datos pendientes del CEO
-URLs de Instagram, TikTok y LinkedIn y la cuarta red (el mensaje se cortó en "y"); nombre y trayectoria del CEO; eslogan definitivo; capturas de las apps; dominio; lista de tecnologías (tarjeta de stack); revisión legal; decisión de envío del formulario; log de errores de Vercel.
+## Limitaciones conocidas
+- Formulario sin servidor: correo (mailto) o WhatsApp.
+- Rutas sin traducir (/en/servicios). CSP parcial. Textos EN y legales son borradores.
+- npm audit completo: 5 altas solo en la cadena de desarrollo de ESLint (runtime = 0).
 
-## Cómo repetir las pruebas visuales
-Chromium se obtiene con npm: `@sparticuz/chromium` + `puppeteer-core` (no instalados en el proyecto, solo en una carpeta aparte). Guion: abrir /es y /en en varios anchos, comparar scrollWidth con clientWidth y revisar capturas.
+## Pendiente del CEO
+URL de Instagram; nombre y trayectoria; eslogan; capturas de apps; dominio; revisión legal; confirmar docs/PENDIENTES_Y_AFIRMACIONES.md; cómo recibir los mensajes del formulario; log de error de Vercel.
+
+## Siguiente
+Fase 6 final: envío real del formulario. Backlog completo en HANDOFF_PROMPT.md §8.

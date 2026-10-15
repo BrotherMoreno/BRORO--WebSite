@@ -30,7 +30,7 @@ export default async function Page({ params }: PageProps<"/[lang]/portafolio">) 
               <Reveal key={pr.slug} delay={i * 0.1} className="h-full">
                 <SpotlightCard className="flex h-full flex-col p-6 sm:p-8">
                   <p className="font-mono text-xs text-lime-400">{pr.category}</p>
-                  <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">{pr.name}</h2>
+                  <h2 translate="no" className="mt-3 text-2xl font-semibold sm:text-3xl">{pr.name}</h2>
                   <p className="mt-3 text-muted">{pr.summary}</p>
                   <dl className="mt-6 grid grid-cols-1 gap-4 border-t border-[var(--border-soft)] pt-5 text-sm sm:grid-cols-2">
                     <div><dt className="text-muted">{p.platform}</dt><dd className="mt-1">{pr.platform}</dd></div>

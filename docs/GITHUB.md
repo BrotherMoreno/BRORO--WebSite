@@ -1,54 +1,67 @@
-# Guía de GitHub para el proyecto BRORO
+# GitHub: procedimiento para subir y actualizar el sitio
 
-## 1. Primera vez
-1. Crea un repositorio vacío en github.com (sin README ni .gitignore). Recomendado: privado y dentro de una organización "BRORO".
-2. En la carpeta del proyecto (la que tiene `package.json`):
+## A. Primera vez (repositorio nuevo)
+1. En github.com: New repository, nombre `broro-web`, **privado**, sin README ni .gitignore (el proyecto ya los trae). Si usas una organización "BRORO", créala antes.
+2. Instala Git (git-scm.com) y, en la carpeta del proyecto (la que tiene `package.json`), en PowerShell:
 ```
 git init
-git add .
-git commit -m "Fases 0 a 5: base, diseño, inicio, páginas y animaciones"
+git add -A
+git commit -m "Sitio BRORO: fases 0 a 6, idiomas, contacto completo y QA"
 git branch -M main
 git remote add origin https://github.com/TU-USUARIO-U-ORG/broro-web.git
 git push -u origin main
 ```
-3. En la pestaña **Actions** del repositorio verás correr el flujo "CI" (lint, build y tipos). Debe terminar en verde.
+3. Abre la pestaña **Actions**: el flujo "CI" debe quedar en verde.
 
-## 2. Cada vez que llegue una entrega nueva (método seguro)
-Las entregas pueden eliminar o renombrar archivos; copiar encima no los borra y puede dejar restos que rompan el build. Por eso:
-1. Cierra el servidor (`Ctrl + C`).
-2. En tu carpeta del proyecto borra `src`, `public` y `docs`. NO borres `.git` ni `node_modules`.
-3. Copia todo el contenido del zip nuevo en tu carpeta, reemplazando lo existente (incluye archivos ocultos como `.github`).
-4. Ejecuta `npm install` (limpia dependencias eliminadas) y `npm run build` para comprobar.
-5. En VS Code abre Control de código fuente (`Ctrl+Shift+G`): revisa la lista de archivos nuevos, modificados y eliminados.
-6. Confirma con un mensaje claro y sincroniza:
-```
-git add .
-git commit -m "Fase N: descripción breve"
+## B. Cada entrega nueva (repositorio existente)
+Las entregas pueden mover, borrar o renombrar archivos. Copiar encima no borra lo viejo y rompe el build; por eso se borra antes lo que el zip reemplaza.
+```powershell
+cd C:\RUTA\A\TU\brorotech
+git status                                    # si hay cambios tuyos sin guardar, haz commit antes
+Remove-Item -Recurse -Force src, public, docs, tools, .github, .next -ErrorAction SilentlyContinue
+Expand-Archive -Path "$HOME\Downloads\brorotech-fase6.zip" -DestinationPath "$env:TEMP\broro-zip" -Force
+robocopy "$env:TEMP\broro-zip\brorotech" . /E            # códigos 0 a 7 son normales
+Test-Path -LiteralPath "src\app\[lang]"                   # debe ser True
+npm install
+npm run check                                             # lint + tipos + build
+git add -A
+git status                                                # revisa: new file / modified / deleted
+git commit -m "Descripción breve de la entrega"
 git push
 ```
-7. Mira la pestaña Actions: debe quedar en verde.
+Git Bash, Mac o Linux:
+```bash
+rm -rf src public docs tools .github .next
+unzip -o ~/Downloads/<zip> -d /tmp/broro-zip && cp -a /tmp/broro-zip/brorotech/. .
+npm install && npm run check && git add -A && git commit -m "..." && git push
+```
+`git add -A` (no `git add .`) registra también los archivos eliminados. No borres `.git`, `node_modules` ni `.env*` locales.
 
-## 3. Qué automatiza el repositorio
-- `.github/workflows/ci.yml`: en cada push a `main` y en cada Pull Request ejecuta `npm ci`, lint, build y comprobación de tipos.
-- `.github/dependabot.yml`: propone actualizaciones semanales de dependencias (agrupadas) y mensuales de las acciones de GitHub.
-- Plantillas de Pull Request y de Issues (error, mejora).
-- `.gitattributes`: evita problemas de saltos de línea entre Windows y GitHub.
+## C. Comprobar que salió bien
+- Pestaña **Actions**: CI en verde (instalación limpia, lint, build, tipos).
+- Vercel (si está conectado al repositorio) despliega solo al hacer push a `main`. Si falla: Settings > General > **Root Directory** debe apuntar a la carpeta con `package.json`; pega el log del error.
+- `npm audit --omit=dev` debe dar 0.
 
-## 4. Ajustes recomendados del repositorio (Settings)
-- Descripción corta y topics: `nextjs`, `typescript`, `tailwindcss`, `portafolio`.
-- Social preview: sube el logo de BRORO.
-- Si tu plan lo permite: protege la rama `main` y exige que el CI pase antes de fusionar.
-- Nunca subas archivos `.env`: ya están ignorados. Las claves de la Fase 6 irán como Secrets del repositorio y en el servicio de despliegue.
-- Licencia: decide antes de hacerlo público. Un repositorio público sin licencia queda con todos los derechos reservados; privado no necesita licencia.
+## D. Problemas frecuentes
+| Síntoma | Causa | Solución |
+|---|---|---|
+| "duplicate route" / "You cannot have two parallel pages" | Quedaron carpetas antiguas | Repite el paso B borrando `src` antes de copiar |
+| `Cannot find module 'three'` (u otra librería) | Archivo viejo que ya no existe en la entrega | Borra `src` y copia de nuevo |
+| `npm ci` falla por `package-lock.json` | Lock desincronizado | `npm install` y haz commit del lock |
+| `git push` rechazado | El remoto tiene cambios que no tienes | `git pull --rebase` y vuelve a `git push` |
+| Avisos LF/CRLF | Windows | Normal: `.gitattributes` los gestiona |
+| Vercel: build falla pero local no | Distinta versión de Node | En Vercel usa Node 22 (Settings > General) |
 
-## 5. Las apps
-RBIM3D y PortaCloud van en repositorios propios. Cada uno debería tener README, capturas, CHANGELOG y las versiones publicadas como Releases (etiquetas `v1.0.0`).
+## E. Ajustes recomendados del repositorio
+- About: descripción corta y topics (`nextjs`, `typescript`, `tailwindcss`, `portafolio`).
+- Settings > General > Social preview: sube `public/og.png` (1200×630).
+- Si tu plan lo permite: proteger `main` y exigir que CI pase antes de fusionar.
+- Secrets (para la Fase 6 del formulario): Settings > Secrets and variables > Actions, y también en Vercel. Nunca en el código.
+- Dependabot ya está configurado (`.github/dependabot.yml`): revisa los Pull Requests que abra.
+- Licencia: decídela antes de hacer público el repositorio; privado no la necesita.
 
-## 6. Versiones (opcional)
-Cuando una fase esté estable: `git tag v0.5.0` y `git push --tags`; en GitHub, Releases > Draft a new release.
+## F. Versiones
+Cuando una entrega esté estable: `git tag v0.6.0 && git push --tags`; en GitHub: Releases > Draft a new release.
 
-## 7. Variables en Vercel
-No es obligatorio configurar nada. Opcional: `NEXT_PUBLIC_SITE_URL` con el dominio final (por ejemplo `https://www.tudominio.com`) cuando lo tengas.
-
-## 8. Cambios grandes de estructura
-La Fase 6 movió todas las páginas a `src/app/[lang]/` y eliminó `src/app/page.tsx`, `layout.tsx`, `servicios`, `portafolio`, `nosotros`, `contacto`, `legal` y `design-system`, además de `src/content/home.ts`, `pages.ts`, `contact.ts` y `projects.ts`. Si copias el zip sin borrar antes `src`, el build falla con rutas duplicadas: usa siempre el método de la sección 2.
+## G. Repositorios de las apps
+RBIM3D y PortaCloud van en repositorios propios. Plantilla: `docs/PLANTILLA_README_APP.md`.

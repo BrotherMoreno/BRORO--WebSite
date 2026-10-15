@@ -16,6 +16,7 @@ export function pageMetadata(lang: Locale, path: string, title: Metadata["title"
     ...(title ? { title } : {}),
     description,
     alternates: { canonical: `/${lang}${path}`, languages },
-    openGraph: { ...(ogTitle ? { title: ogTitle } : {}), description, siteName: "BRORO", type: "website", locale: lang === "es" ? "es_PE" : "en_US", url: `/${lang}${path}` },
+    openGraph: { ...(ogTitle ? { title: ogTitle } : {}), description, siteName: "BRORO", type: "website", locale: lang === "es" ? "es_PE" : "en_US", url: `/${lang}${path}`, images: [{ url: "/og.png", width: 1200, height: 630, alt: "BRORO" }] },
+    twitter: { card: "summary_large_image", images: ["/og.png"] },
   };
 }

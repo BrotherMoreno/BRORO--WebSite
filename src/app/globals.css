@@ -35,9 +35,9 @@
   --color-on-surface: var(--on-surface);
   --color-on-surface-variant: var(--on-surface-variant);
   --color-glass: var(--glass-border);
-  --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
-  --font-sans: "Inter Variable", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-display: var(--font-display-loaded), system-ui, sans-serif;
+  --font-sans: var(--font-sans-loaded), system-ui, sans-serif;
+  --font-mono: var(--font-mono-loaded), ui-monospace, monospace;
 }
 
 html { background: var(--ink-950); color-scheme: dark; }
@@ -48,6 +48,15 @@ body {
 }
 h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
 
+/* Entrada de lo que se ve al abrir la página: solo CSS, para que el contenido no dependa de JavaScript (LCP). */
+@keyframes enter { from { opacity: 0; transform: translateY(1.25rem); } to { opacity: 1; transform: none; } }
+@keyframes word-up { from { transform: translateY(110%); } to { transform: none; } }
+.enter { animation: enter 0.7s var(--ease-brand) both; animation-delay: var(--d, 0s); }
+.word-up { display: inline-block; animation: word-up 0.8s var(--ease-brand) both; animation-delay: calc(0.05s + var(--i, 0) * 0.06s); }
+
+@media (prefers-reduced-motion: reduce) {
+  .enter, .word-up { animation: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

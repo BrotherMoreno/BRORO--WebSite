@@ -1,0 +1,19 @@
+{
+  "name": "broro-qa",
+  "private": true,
+  "type": "module",
+  "description": "Kit de QA visual y t\u00e9cnico del sitio BRORO (Chromium headless, axe-core, Lighthouse). Se instala aparte del proyecto.",
+  "scripts": {
+    "overflow": "node overflow.mjs",
+    "a11y": "node a11y.mjs",
+    "lighthouse": "node lighthouse.mjs",
+    "interact": "node interact.mjs",
+    "all": "npm run a11y && npm run interact && npm run lighthouse && npm run overflow"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "puppeteer-core": "^25.13.0",
+    "axe-core": "^4.14.0",
+    "lighthouse": "^13.5.0"
+  }
+}

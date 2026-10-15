@@ -121,6 +121,35 @@ export const en: Dict = {
     subtitle: "Custom development, modern web platforms with React and high-performance mobile apps. We work online for the whole world, with on-site technical deployment where you need it.",
     modality: { label: "Way of working", title: "100% online work", text: "We serve clients remotely, worldwide, with agile coordination over video calls.", chips: ["Remote sync", "1-on-1 meetings", "On-site support"] },
     channels: { label: "Direct channels", email: "Email", whatsapp: "Direct WhatsApp", chat: "Chat", copy: "Copy", copied: "Copied!", copyFail: "Could not copy" },
+    stack: { label: "Trusted tech stack", text: "Proven tools for robust, scalable solutions:" },
+    why: {
+      before: "Why choose ", after: " as your technology partner?",
+      text: "We turn your concepts and initiatives into functional, fast and scalable software. We work online for the whole world with a cutting-edge tech stack.",
+      items: [
+        { icon: "zap", title: "Fast response", text: "Get a detailed reply within 24 hours" },
+        { icon: "users", title: "Expert team", text: "Work with experienced developers and designers" },
+        { icon: "search", title: "Transparent process", text: "Clear communication and regular project updates" },
+        { icon: "badge", title: "Quality assurance", text: "Rigorous testing to reduce errors before every delivery" },
+        { icon: "clock", title: "On-time delivery", text: "We respect deadlines and deliver on time" },
+        { icon: "wrench", title: "Post-launch support", text: "Ongoing maintenance and support for your project" },
+      ],
+    },
+    faq: {
+      title: "Got questions? We have answers",
+      text: "See how we approach technical projects, from confidentiality to offline-first engineering.",
+      items: [
+        { q: "How long does a typical project take?", a: "Depending on scope, a specialized module or an offline native Android app typically takes between 4 and 12 weeks. Our technical cycle follows 4 clear stages:", extra: ["01. Understand", "02. Design", "03. Build", "04. Launch"] },
+        { q: "How does the work process go if we are in different cities or countries?", a: "We work 100% online with smooth, transparent communication via Slack, Discord, Google Meet and WhatsApp. We keep real-time progress boards (Jira / Linear) and automatic deployments (CI/CD) so you can test progress week by week from anywhere in the world. If your project calls for an on-site presence, we also arrange in-person sessions.", extra: [] },
+        { q: "Do you sign non-disclosure agreements (NDAs) before reviewing requirements?", a: "Yes. Protecting our clients' intellectual property, engineering drawings and methodologies is a non-negotiable principle. You can tick the box in the form or ask us for our standard bilateral NDA before sharing any sensitive documentation.", extra: [] },
+        { q: "Which technologies and languages do you use?", a: "We choose the best technology for the project's goal: on the web frontend we use React, Next.js and TypeScript; on mobile we build with native Android (Kotlin) or cross-platform architectures; on the backend we implement microservices with Node.js and Python, integrating modern databases (PostgreSQL, Redis, MongoDB) and cloud infrastructure on AWS and GCP.", extra: [] },
+        { q: "How are support and maintenance handled after launch?", a: "We offer ongoing support plans with service level agreements (SLA) according to how critical the operation is. They include proactive monitoring, compatibility updates for Android/iOS versions and database optimization as the volume of site data grows.", extra: [] },
+      ],
+    },
+    closing: {
+      title: "Do you have specific requirements or complex technical questions?",
+      text: "Book a direct technical assessment session with our engineers. We analyze the feasibility of your case with no upfront cost and no commercial commitment.",
+      primary: "Request a technical assessment", subject: "BRORO technical assessment", secondary: "Fill in the form",
+    },
     form: {
       kicker: "// CONTACT FORM", title: "Start a project / get a quote",
       text: "Fill in the details of your initiative to receive a technical assessment and a development proposal in under 24 hours.",
@@ -147,7 +176,7 @@ export const en: Dict = {
   legal: {
     crumb: "Legal", draft: "Provisional draft: it must be reviewed by a legal professional before the site is published.",
     privacy: { title: "Privacy policy", paragraphs: [
-      "This site presents BRORO and its projects. It currently uses no tracking cookies or analytics tools. It only stores a cookie in your browser with your preferred language.",
+      "This site presents BRORO and its projects. It currently uses no cookies or analytics tools. To choose the site version it only reads your browser language and does not store it.",
       "The contact form does not store data on the site: it prepares an email or a WhatsApp message, and what you write is only sent if you press send.",
       "If you write to us, we will use your message only to reply to you. For questions about your data, write to BroroTechnologies@outlook.com.",
       "If analytics, cookies or a form-sending service are added in the future, this policy will be updated.",

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# kit de QA
+/tools/qa/node_modules
+/tools/qa/out

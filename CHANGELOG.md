@@ -1,5 +1,10 @@
 # Changelog
 
+## Mejora continua — 2026-10-14
+- Contacto completo (stack, por qué elegir, FAQ, banner final); redes TikTok y LinkedIn; sin botón de idioma (traducción del navegador).
+- Seguridad (cabeceras OWASP), JSON-LD, iconos, imagen OG, pantalla de error, next/font, animaciones CSS, `npm run check`.
+- Kit QA en tools/qa; guías de calidad, afirmaciones a confirmar, GitHub y traspaso mejorado.
+
 ## Fase 6 parcial — 2026-10-13
 - Idiomas es/en con rutas /es y /en, selector, hreflang, sitemap y robots.
 - Selector de 245 países para el teléfono del formulario.

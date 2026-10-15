@@ -17,7 +17,7 @@ export function FeaturedProjects({ lang, dict }: { lang: Locale; dict: Dict }) {
             <Reveal key={p.slug} delay={i * 0.1} className="h-full">
               <SpotlightCard className="flex h-full flex-col p-6 sm:p-8">
                 <p className="font-mono text-xs text-lime-400">{p.category} · {p.status}</p>
-                <h3 className="mt-3 text-2xl font-semibold sm:text-3xl">{p.name}</h3>
+                <h3 translate="no" className="mt-3 text-2xl font-semibold sm:text-3xl">{p.name}</h3>
                 <p className="mt-3 text-muted">{p.summary}</p>
                 <ul className="mt-5 space-y-2 text-sm">
                   {dict.home.highlights[p.slug]?.map((h) => (

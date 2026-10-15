@@ -119,6 +119,35 @@ export const es = {
     subtitle: "Desarrollo a medida, plataformas web modernas con React y apps móviles de alto rendimiento. Trabajamos online para todo el mundo y con despliegue técnico donde lo necesites.",
     modality: { label: "Modalidad de trabajo", title: "Trabajo 100% online", text: "Atendemos de manera remota para todo el mundo con coordinación ágil por videollamada.", chips: ["Sincronización remota", "Reuniones 1 a 1", "Soporte in situ"] },
     channels: { label: "Canales directos", email: "Correo", whatsapp: "WhatsApp directo", chat: "Chatear", copy: "Copiar", copied: "¡Copiado!", copyFail: "No se pudo copiar" },
+    stack: { label: "Stack tecnológico de confianza", text: "Herramientas probadas para soluciones robustas y escalables:" },
+    why: {
+      before: "¿Por qué elegir a ", after: " como socio tecnológico?",
+      text: "Convertimos tus conceptos e iniciativas en software funcional, rápido y escalable. Trabajamos online para todo el mundo con un stack tecnológico de vanguardia.",
+      items: [
+        { icon: "zap", title: "Respuesta rápida", text: "Obtén una respuesta detallada dentro de las 24 horas" },
+        { icon: "users", title: "Equipo de expertos", text: "Trabaja con desarrolladores y diseñadores experimentados" },
+        { icon: "search", title: "Proceso transparente", text: "Comunicación clara y actualizaciones periódicas del proyecto" },
+        { icon: "badge", title: "Garantía de calidad", text: "Pruebas rigurosas para reducir los errores antes de cada entrega" },
+        { icon: "clock", title: "Entrega a tiempo", text: "Respetamos los plazos y entregamos a tiempo" },
+        { icon: "wrench", title: "Soporte posterior al lanzamiento", text: "Mantenimiento y soporte continuo para tu proyecto" },
+      ],
+    },
+    faq: {
+      title: "¿Tienes dudas? Tenemos respuestas",
+      text: "Conoce cómo abordamos los proyectos técnicos, desde la confidencialidad hasta la ingeniería offline-first.",
+      items: [
+        { q: "¿Cuánto tiempo toma el desarrollo de un proyecto típico?", a: "Dependiendo del alcance, un módulo especializado o app nativa Android offline toma típicamente entre 4 a 12 semanas. Nuestro ciclo técnico sigue 4 etapas claras:", extra: ["01. Entender", "02. Diseñar", "03. Construir", "04. Lanzar"] },
+        { q: "¿Cómo es el proceso de trabajo si estamos en diferentes ciudades o países?", a: "Trabajamos 100% online con comunicación fluida y transparente vía Slack, Discord, Google Meet y WhatsApp. Mantenemos tableros de avance en tiempo real (Jira / Linear) y despliegues automáticos (CI/CD) para que puedas probar los avances semana a semana desde cualquier parte del mundo. Si tu proyecto amerita presencia in situ, también coordinamos sesiones presenciales.", extra: [] },
+        { q: "¿Firman acuerdos de confidencialidad (NDA) antes de revisar requerimientos?", a: "Sí. Proteger la propiedad intelectual, los planos de ingeniería y las metodologías de nuestros clientes es una premisa innegociable. Puedes marcar la casilla en el formulario o solicitarnos nuestro documento estándar de NDA bilateral antes de compartir cualquier documentación sensible.", extra: [] },
+        { q: "¿Qué tecnologías y lenguajes utilizan en sus desarrollos?", a: "Seleccionamos la mejor tecnología según la meta del proyecto: en frontend web usamos React, Next.js y TypeScript; en móvil desarrollamos con Android nativo (Kotlin) o arquitecturas multiplataforma; en backend implementamos microservicios con Node.js y Python, integrando bases de datos modernas (PostgreSQL, Redis, MongoDB) e infraestructura Cloud en AWS y GCP.", extra: [] },
+        { q: "¿Cómo se gestiona el soporte y mantenimiento posterior al lanzamiento?", a: "Ofrecemos esquemas de soporte continuo con acuerdos de nivel de servicio (SLA) según la criticidad de la operación. Incluye monitoreo proactivo, actualizaciones de compatibilidad con versiones de Android/iOS y optimización de base de datos a medida que escala el volumen de datos en obra.", extra: [] },
+      ],
+    },
+    closing: {
+      title: "¿Tienes requerimientos específicos o dudas técnicas complejas?",
+      text: "Agenda una sesión de diagnóstico técnico directo con nuestros ingenieros. Analizamos la viabilidad de tu caso sin costo inicial ni compromisos comerciales.",
+      primary: "Solicitar diagnóstico técnico", subject: "Diagnóstico técnico BRORO", secondary: "Completar el formulario",
+    },
     form: {
       kicker: "// FORMULARIO DE CONTACTO", title: "Iniciar proyecto / cotizar",
       text: "Completa los detalles de tu iniciativa para recibir una evaluación técnica y propuesta de desarrollo en menos de 24 horas.",
@@ -145,7 +174,7 @@ export const es = {
   legal: {
     crumb: "Legal", draft: "Borrador provisional: debe ser revisado por un profesional legal antes de publicar el sitio.",
     privacy: { title: "Política de privacidad", paragraphs: [
-      "Este sitio presenta a BRORO y sus proyectos. Actualmente no usa cookies de seguimiento ni herramientas de analítica. Solo guarda en tu navegador una cookie con tu idioma preferido.",
+      "Este sitio presenta a BRORO y sus proyectos. Actualmente no usa cookies ni herramientas de analítica. Para elegir la versión del sitio solo lee el idioma de tu navegador y no lo guarda.",
       "El formulario de contacto no guarda datos en el sitio: prepara un correo o un mensaje de WhatsApp y los datos que escribas solo se envían si pulsas enviar.",
       "Si nos escribes, usaremos tu mensaje únicamente para responderte. Para consultas sobre tus datos, escribe a BroroTechnologies@outlook.com.",
       "Si en el futuro se añaden analítica, cookies o un servicio de envío de formularios, esta política se actualizará.",
